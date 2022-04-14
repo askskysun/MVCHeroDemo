@@ -11,6 +11,7 @@ import com.hero.mvcdemo.cons.IDiyMessage;
 import com.hero.mvcdemo.domain.main.controller.GetbaiduController;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * 网络请求步骤
@@ -22,14 +23,14 @@ import butterknife.BindView;
  */
 public class MainActivity extends BaseActivity {
 
+    /******************** 静态变量/常量 *****************************/
+    /******************** UI控件 *****************************/
     @BindView(R.id.getbaidu)
     TextView mGetbaidu;
 
-    @Override
-    public int bindLayout() {
-        return R.layout.activity_main;
-    }
+    /******************** 其他变量 *****************************/
 
+    /******************** 生命周期方法 ********************************************/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,17 +39,20 @@ public class MainActivity extends BaseActivity {
         initUI();
     }
 
+    /******************** 父类/实现方法 ********************************************/
     @Override
-    protected void initUI() {
-        mGetbaidu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //发送网络/其他耗时请求处理消息
-                mController.sendAsyncMessage(IDiyMessage.MAIN_GET_BAIDU_ACTION, "参数");
-            }
-        });
+    public int bindLayout() {
+        return R.layout.activity_main;
     }
 
+    @Override
+    protected void initUI() {
+
+    }
+
+    /******************** 普通方法 ***************************************************/
+
+    /******************** handler方法 ***************************************************/
     /**
      * 5、重写handlerMessage(Message msg)，处理回调，此时已经在主线程
      * @param msg
@@ -74,6 +78,15 @@ public class MainActivity extends BaseActivity {
     private void handlegetBaiduError(Object obj) {
         mGetbaidu.setText(obj.toString());
     }
+
+    /**************************** 点击事件 *******************************************************************************************/
+    @OnClick(R.id.getbaidu)
+    public void getbaiduClick(View v) {
+        //发送网络/其他耗时请求处理消息
+        mController.sendAsyncMessage(IDiyMessage.MAIN_GET_BAIDU_ACTION, "参数");
+    }
+
+    /******************** 内部类 *****************************/
 }
 /**
  待优化：
