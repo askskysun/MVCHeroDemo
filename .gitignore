@@ -54,5 +54,4 @@ obj
 
 #忽略.hprof性能分析文件
 *.hprof
-gradle/wrapper/gradle-wrapper.jar
-gradle/wrapper/gradle-wrapper.properties
+

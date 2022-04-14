@@ -50,8 +50,13 @@ public abstract class BaseActivity extends FragmentActivity implements BaseModel
     /**
      * 初始化Controller
      */
-    protected void initController() {
+    protected void initController(BaseController mController) {
+        if (mController == null) {
+            return;
+        }
 
+        this.mController = mController;
+        this.mController.setListener(this);
     }
 
     /**
